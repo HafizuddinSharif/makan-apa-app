@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Card } from "./(components)/Card";
 
 const Home = () => {
   const constraintsRef = useRef(null);
