@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { Card } from "./(components)/Card";
 
 const Home = () => {
   const constraintsRef = useRef(null);
   const [x, setX] = useState(0);
+  const [stack, setStack] = useState([]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -16,26 +18,34 @@ const Home = () => {
   };
 
   return (
-    <div className="h-screen w-full" ref={constraintsRef}>
-      <div className="h-1/2 w-full">
-        <motion.div
-          // initial={{
-          //   x: 0,
-          // }}
-          // animate={{
-          //   x,
-          // }}
-          drag
-          dragConstraints={constraintsRef}
-          // onDrag={handleDrag}
-          onDragEnd={handleDrag}
-          className={`w-10 h-10 bg-blue-500`}
-          // transition={{ type: "spring" }}
-        />
-      </div>
-      <div>
-        <input type="range" onChange={handleChange} value={x}></input>
-        <span>{x}</span>
+    <div className="h-screen w-full">
+      <div className="h-1/2 w-full my-10 flex justify-center">
+        <div className="w-[200px] relative" ref={constraintsRef}>
+          <motion.div
+            initial={{
+              rotate: 0,
+            }}
+            drag="x"
+            dragConstraints={constraintsRef}
+            // onDrag={handleDrag}
+            onDragEnd={handleDrag}
+            whileTap={{ scale: 1.1 }}
+            className={`w-[200px] h-full bg-white rounded-3xl shadow-lg grid items-center absolute z-30`}
+            // transition={{ type: "spring" }}
+          >
+            <span className="text-black text-center text-8xl">🧁</span>
+          </motion.div>
+          <div
+            className={`w-[200px] h-full bg-white rounded-3xl shadow-lg grid items-center rotate-3 absolute z-20`}
+          >
+            <span className="text-black text-center text-8xl ">🍎</span>
+          </div>
+          <div
+            className={`w-[200px] h-full bg-white rounded-3xl shadow-lg grid items-center rotate-6 absolute z-10`}
+          >
+            <span className="text-black text-center text-8xl ">🥞</span>
+          </div>
+        </div>
       </div>
     </div>
   );
